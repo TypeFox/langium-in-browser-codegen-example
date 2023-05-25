@@ -19,9 +19,11 @@
     "esbuild": "^0.15.8",
     "langium": "~2.0.0",
     "langium-arithmetics-dsl": "~2.0.0",
+    "js-base64": "^3.7.4",
     "monaco-editor-workers": "^0.34.2",
     "monaco-editor-wrapper": "^1.6.0",
     "shx": "^0.3.4",
+    "source-map": "^0.7.4",
     "vscode-languageserver": "~8.0.0",
     "concurrently": "^7.6.0",
     "http-server": "^14.1.1"
