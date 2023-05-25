@@ -9,7 +9,7 @@ import { expandToString } from 'langium';
 import { buildWorkerDefinition } from 'monaco-editor-workers';
 import { CodeEditorConfig, MonacoEditorLanguageClientWrapper, WorkerConfigOptions } from 'monaco-editor-wrapper';
 import { Diagnostic, DiagnosticSeverity, NotificationType } from 'vscode-languageserver/browser.js';
-import { generate } from '../generator/generator.js';
+import { generate } from '../generator/generator-with-nodes.js';
 
 type DocumentChange = { uri: string, content: string, diagnostics: Diagnostic[] };
 
