@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+  pull_request_target: # enables builds of PRs to branch 'master' from forked repos, with the workflow being taken from the target revision, i.e. the 'master' branch
+    branches:
+      - main
+  workflow_dispatch: # enables manual triggering
+
+jobs:
+  build:
+    # suppress triggering this job on 'synchronize' events of PR's (i.e. branch updates) within the same repo, as that is covered by 'push' already, but fire on updates of PRs coming from outside
+    if: github.event_name != 'pull_request_target' || github.event.action != 'synchronize' || github.event.pull_request.base.repo.id != github.event.pull_request.head.repo.id 
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    timeout-minutes: 20
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+    - name: Build
+      shell: bash
+      run: |
+        npm ci
+

@@ -1,0 +1,29 @@
+{
+  "name": "langium-arithmetics-codegen-example-frontend",
+  "version": "0.0.1",
+  "description": "Frontend part of a Langium fully-in-browser code generation example based on the Arithmetics DSL",
+  "main": "out/index.js",
+  "author": "sailingKieler (TypeFox)",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "prepare": "npm run copy:worker && npm run build && npm run build:ls",
+    "copy:worker": "shx cp -fr ./node_modules/monaco-editor-workers/dist/workers/editorWorker-es.js ./public/",
+    "build": "tsc -p tsconfig.json --noEmit && esbuild ./src/arithmeticsEditor/index.ts --bundle --target=es2020 --format=esm --loader:.ttf=file --external:fs --external:path --sourcemap --outfile=./public/arithmeticsEditor.js",
+    "build:ls": "esbuild ./node_modules/langium-arithmetics-dsl/out/language-server/main-browser.js --bundle --format=esm --sourcemap --outfile=./public/arithmeticsServerWorker.js",
+    "serve": "npx http-server public -p 3000",
+    "watch": "concurrently -n tsc,esbuild -c blue,yellow \"tsc -p tsconfig.json --noEmit -w\" \"esbuild ./src/arithmeticsEditor/index.ts --bundle --target=es2020 --format=esm --loader:.ttf=file --external:fs --external:path --sourcemap --outfile=./public/arithmeticsEditor.js --watch\""
+  },
+  "devDependencies": {
+    "typescript":"^5.0.0",
+    "esbuild": "^0.15.8",
+    "langium": "~2.0.0",
+    "langium-arithmetics-dsl": "~2.0.0",
+    "monaco-editor-workers": "^0.34.2",
+    "monaco-editor-wrapper": "^1.6.0",
+    "shx": "^0.3.4",
+    "vscode-languageserver": "~8.0.0",
+    "concurrently": "^7.6.0",
+    "http-server": "^14.1.1"
+  }
+}
