@@ -1,3 +1,5 @@
+**Update:** The implementation has been updated to Langium v2.0, and with that the branches *expandToString*, *expandToNode*, *expandTracedToNode*, and *main* have been force-pushed. The former commits are still available via the tags *expandToString-Langium-v1*, *expandToNode-Langium-v1*, and *expandTracedToNode-Langium-v1*. (October 25th, 2023)
+
 <div id="langium-logo" align="center">
   <a href="https://github.com/langium/langium">
     <img alt="Langium Logo" width="500" src="https://user-images.githubusercontent.com/4377073/135283991-90ef7724-649d-440a-8720-df13c23bda82.png">
